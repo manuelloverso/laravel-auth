@@ -4,6 +4,10 @@
 @section('content')
     {{-- Projects --}}
     <div class="container">
+        <div class="py-3">
+            <a class="btn btn-dark" href="{{ route('admin.projects.create') }}">Create</a>
+
+        </div>
 
         <div class="table-responsive">
             <table class="table table-primary">
