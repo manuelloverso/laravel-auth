@@ -34,7 +34,7 @@
                             <td>
                                 <a class="btn btn-dark" href="{{ route('admin.projects.show', $project) }}">View</a>
                                 <a class="btn btn-dark" href="{{ route('admin.projects.edit', $project) }}">Edit</a>
-
+                                @include('partials.delete-modal')
                             </td>
                         </tr>
                     @endforeach
