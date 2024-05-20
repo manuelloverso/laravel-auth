@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,7 @@ Route::middleware(['auth', 'verified'])
     ->group(function () {
         //here we put all the routes that need to be protected
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        Route::resource('projects', ProjectController::class);
     });
 
 
