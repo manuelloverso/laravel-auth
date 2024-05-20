@@ -19,7 +19,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+// this one groups all the routes that need to be protected by the authentication
+Route::middleware(['auth', 'verified'])
+    ->name('admin.') //we put 'admin.' here because all the routes will start with admin.  (ex. admin.index)
+    ->prefix('admin') // all the url's start with admin
+    ->group(function () {
+        //here we put all the routes that need to be protected
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    });
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
