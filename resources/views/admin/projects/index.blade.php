@@ -23,10 +23,13 @@
                         <tr class="">
                             <td scope="row">{{ $project->id }}</td>
                             <td>{{ $project->title }}</td>
-                            <td>{{ $project->image }}</td>
+                            <td><img src="{{ $project->image }}" alt=""></td>
                             <td>{{ $project->description }}</td>
                             <td>{{ $project->technologies }}</td>
                             <td>{{ $project->date }}</td>
+                            <td>
+                                <a class="btn btn-dark" href="{{ route('admin.projects.show', $project) }}">View</a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
