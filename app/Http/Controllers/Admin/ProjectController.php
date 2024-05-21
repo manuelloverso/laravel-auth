@@ -38,7 +38,7 @@ class ProjectController extends Controller
         $val_data['slug'] = $slug;
         //dd($val_data);
         Project::create($val_data);
-        return to_route('admin.projects.index');
+        return to_route('admin.projects.index')->with('message', 'Project created succesfully');
     }
 
     /**
@@ -64,11 +64,11 @@ class ProjectController extends Controller
     {
         //dd($request->all());
         $val_data = $request->validated();
-        //$slug = Str::slug($request->title, '-');
-        //$val_data['slug'] = $slug;
+        $slug = Str::slug($request->title, '-');
+        $val_data['slug'] = $slug;
         //dd($val_data);
         $project->update($val_data);
-        return to_route('admin.projects.show', compact('project'));
+        return to_route('admin.projects.show', compact('project'))->with('message', 'Project updated succesfully');
     }
 
     /**
@@ -77,6 +77,6 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->delete();
-        return to_route('admin.projects.index');
+        return to_route('admin.projects.index')->with('message', 'Project deleted succesfully');
     }
 }

@@ -2,6 +2,8 @@
 
 @section('content')
     <div class="container py-4">
+        @include('partials.action-message')
+
         <div class="col-4">
             <div class="card">
                 <div class="card-img">

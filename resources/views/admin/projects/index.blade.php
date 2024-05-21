@@ -3,7 +3,8 @@
 
 @section('content')
     {{-- Projects --}}
-    <div class="container">
+    <div class="container py-3">
+        @include('partials.action-message')
         <div class="py-3">
             <a class="btn btn-dark" href="{{ route('admin.projects.create') }}">Create</a>
 
