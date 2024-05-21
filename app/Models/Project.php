@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'slug', 'image', 'thumb', 'technologies', 'date', 'description'];
+    protected $guarded = ['_token'];
 }

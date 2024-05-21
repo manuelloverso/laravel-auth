@@ -36,11 +36,8 @@ class ProjectController extends Controller
         $val_data = $request->validated();
         $slug = Str::slug($request->title, '-');
         $val_data['slug'] = $slug;
-        //dd($val_data);
         Project::create($val_data);
         $project = Project::where('title',  $val_data['title'])->first();
-        //$project = $projects[0];
-        //dd($projects);
         return to_route('admin.projects.show', compact('project'))->with('message', 'Project created succesfully');
     }
 
