@@ -38,7 +38,10 @@ class ProjectController extends Controller
         $val_data['slug'] = $slug;
         //dd($val_data);
         Project::create($val_data);
-        return to_route('admin.projects.index')->with('message', 'Project created succesfully');
+        $projects = Project::where('title',  $val_data['title'])->get();
+        $project = $projects[0];
+        //dd($project);
+        return to_route('admin.projects.show', compact('project'))->with('message', 'Project created succesfully');
     }
 
     /**
