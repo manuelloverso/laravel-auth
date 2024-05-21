@@ -1,7 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container">
+    <div class="container py-3">
+        @include('partials.validate-errors')
+
         <form action="{{ route('admin.projects.update', $project) }}" method="post">
             @csrf {{-- this is a laravel directive to protect your application from cross-site request forgery --}}
             @method('PUT')
@@ -30,8 +32,8 @@
             <div class="mb-3">
                 <label for="technologies" class="form-label ">technologies</label>
                 <input type="text" name="technologies" id="technologies"
-                    class="form-control @error('technologies') is-invalid @enderror"
-                    placeholder="add the technologies $00.00" value="{{ old('technologies', $project->technologies) }}" />
+                    class="form-control @error('technologies') is-invalid @enderror" placeholder="add the used technologies"
+                    value="{{ old('technologies', $project->technologies) }}" />
                 @error('technologies')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror

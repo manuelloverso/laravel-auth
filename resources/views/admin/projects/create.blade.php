@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container">
+    <div class="container py-3">
         @include('partials.validate-errors')
         <h1>Add a new Project</h1>
         <form action="{{ route('admin.projects.store') }}" method="post">
