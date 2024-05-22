@@ -1,10 +1,10 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container py-3">
+    <div class="container text-white py-3">
         @include('partials.validate-errors')
         <h1>Add a new Project</h1>
-        <form action="{{ route('admin.projects.store') }}" method="post">
+        <form action="{{ route('admin.projects.store') }}" method="post" enctype="multipart/form-data">
             @csrf {{-- this is a laravel directive to protect your application from cross-site request forgery --}}
 
             {{-- title input --}}
@@ -17,10 +17,10 @@
                 @enderror
             </div>
 
-            {{-- Image imput --}}
+            {{-- Image input --}}
             <div class="mb-3">
                 <label for="image" class="form-label">Image</label>
-                <input type="text" name="image" id="image"
+                <input type="file" name="image" id="image"
                     class="form-control  @error('image') is-invalid @enderror" placeholder="add an image"
                     value="{{ old('image') }}" />
                 @error('image')
@@ -28,7 +28,7 @@
                 @enderror
             </div>
 
-            {{-- technologies imput --}}
+            {{-- technologies input --}}
             <div class="mb-3">
                 <label for="technologies" class="form-label ">technologies</label>
                 <input type="text" name="technologies" id="technologies"
@@ -39,7 +39,7 @@
                 @enderror
             </div>
 
-            {{-- date imput --}}
+            {{-- date input --}}
             <div class="mb-3">
                 <label for="date" class="form-label ">Sale Date</label>
                 <input type="date" name="date" id="date" class="form-control @error('date') is-invalid @enderror"

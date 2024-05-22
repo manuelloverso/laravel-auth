@@ -24,7 +24,7 @@ class StoreProjectRequest extends FormRequest
         return [
             'title' => 'required|unique:projects,title|min:2|max:100',
             'description' => 'nullable|max:1000',
-            'image' => 'nullable|max:255',
+            'image' => 'nullable|image|max:600',
             'technologies' => 'nullable|max:500',
             'date' => 'nullable|date',
         ];

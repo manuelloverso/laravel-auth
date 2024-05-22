@@ -6,7 +6,7 @@
     <div class="container py-3">
         @include('partials.action-message')
         <div class="py-3">
-            <a class="btn btn-dark" href="{{ route('admin.projects.create') }}">Create</a>
+            <a class="btn btn-primary" href="{{ route('admin.projects.create') }}">Create</a>
 
         </div>
 
@@ -28,7 +28,13 @@
                         <tr class="">
                             <td scope="row">{{ $project->id }}</td>
                             <td>{{ $project->title }}</td>
-                            <td><img src="{{ $project->image }}" alt=""></td>
+                            <td>
+                                @if (str_starts_with($project->image, 'uploads/'))
+                                    <img width="150" src="{{ asset('storage/' . $project->image) }}" alt="">
+                                @else
+                                    <img src="{{ $project->image }}" alt="">
+                                @endif
+                            </td>
                             <td>{{ $project->description }}</td>
                             <td>{{ $project->technologies }}</td>
                             <td>{{ $project->date }}</td>

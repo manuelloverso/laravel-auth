@@ -7,7 +7,11 @@
         <div class="col-4">
             <div class="card">
                 <div class="card-img">
-                    <img class="w-100" src="{{ $project->image }}" alt="{{ $project->image }}">
+                    @if (str_starts_with($project->image, 'uploads/'))
+                        <img class="w-100" src="{{ asset('storage/' . $project->image) }}" alt="">
+                    @else
+                        <img class="w-100" src="{{ $project->image }}" alt="">
+                    @endif
                 </div>
                 <div class="card-body">
                     <h3>{{ $project->title }}</h3>
@@ -16,7 +20,7 @@
                     <p><strong>Created: </strong>{{ $project->date }}</p>
                     <a class="btn btn-dark" href="{{ route('admin.projects.edit', $project) }}">Edit</a>
                     @include('partials.delete-modal')
-                    <a class="btn btn-dark" href="{{ route('admin.projects.index') }}">All Projects</a>
+                    <a class="btn btn-dark" href="{{ route('admin.projects.index') }}">Back</a>
 
                 </div>
             </div>

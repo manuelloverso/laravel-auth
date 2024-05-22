@@ -1,10 +1,10 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container py-3">
+    <div class="container text-white py-3">
         @include('partials.validate-errors')
 
-        <form action="{{ route('admin.projects.update', $project) }}" method="post">
+        <form action="{{ route('admin.projects.update', $project) }}" method="post" enctype="multipart/form-data">
             @csrf {{-- this is a laravel directive to protect your application from cross-site request forgery --}}
             @method('PUT')
             {{-- title input --}}
@@ -20,7 +20,7 @@
             {{-- image input --}}
             <div class="mb-3">
                 <label for="image" class="form-label">Image</label>
-                <input type="text" name="image" id="image"
+                <input type="file" name="image" id="image"
                     class="form-control  @error('image') is-invalid @enderror" placeholder="add the image"
                     value="{{ old('image', $project->image) }}" />
                 @error('image')
@@ -62,6 +62,8 @@
             <button type="submit" class="btn btn-primary">
                 Submit
             </button>
+            <a class="btn btn-primary" href="{{ route('admin.projects.index') }}">Back</a>
+
 
         </form>
     </div>

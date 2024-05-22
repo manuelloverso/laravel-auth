@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProjectController extends Controller
@@ -36,6 +37,12 @@ class ProjectController extends Controller
         $val_data = $request->validated();
         $slug = Str::slug($request->title, '-');
         $val_data['slug'] = $slug;
+        //image
+        if ($request->has('image')) {
+            $img_path = Storage::put('uploads', $val_data['image']);
+            $val_data['image'] = $img_path;
+        }
+        //dd($val_data);
         Project::create($val_data);
         $project = Project::where('title',  $val_data['title'])->first();
         return to_route('admin.projects.show', compact('project'))->with('message', 'Project created succesfully');
@@ -66,6 +73,20 @@ class ProjectController extends Controller
         $val_data = $request->validated();
         $slug = Str::slug($request->title, '-');
         $val_data['slug'] = $slug;
+
+        //image
+        //check if the request is submitted with an image
+        if ($request->has('image')) {
+            //check if the project already had another image
+            if ($project->image) {
+                //if so we delete it
+                Storage::delete($project->image);
+            }
+            $img_path = Storage::put('uploads', $val_data['image']);
+            //dd($validated, $image_path);
+            $val_data['image'] = $img_path;
+        }
+
         //dd($val_data);
         $project->update($val_data);
         return to_route('admin.projects.show', compact('project'))->with('message', 'Project updated succesfully');
@@ -76,6 +97,9 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        if ($project->image) {
+            Storage::delete($project->image);
+        }
         $project->delete();
         return to_route('admin.projects.index')->with('message', 'Project deleted succesfully');
     }
