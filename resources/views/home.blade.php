@@ -6,7 +6,11 @@
                 <div class="col">
                     <div class="card h-100">
                         <div class="card-img">
-                            <img class="w-100" src="{{ $project->image }}" alt="{{ $project->image }}">
+                            @if (str_starts_with($project->image, 'uploads/'))
+                                <img class="w-100" src="{{ asset('storage/' . $project->image) }}" alt="">
+                            @else
+                                <img class="w-100" src="{{ $project->image }}" alt="">
+                            @endif
                         </div>
                         <div class="card-body">
                             <h3 class="text-uppercase">{{ $project->title }}</h3>
