@@ -1,6 +1,6 @@
 <!-- Modal trigger button -->
 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalId-{{ $project->id }}">
-    Delete
+    <i class="fa-solid fa-trash"></i>
 </button>
 <!-- Modal Body -->
 <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
