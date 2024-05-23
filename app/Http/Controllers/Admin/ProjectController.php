@@ -74,7 +74,11 @@ class ProjectController extends Controller
         $slug = Str::slug($request->title, '-');
         $val_data['slug'] = $slug;
 
+<<<<<<< HEAD
         //image ok
+=======
+        //image handle
+>>>>>>> 1c89db6b2d220f463ca1610a668560fedb3ea587
         //check if the request is submitted with an image
         if ($request->has('image')) {
             //check if the project already had another image
